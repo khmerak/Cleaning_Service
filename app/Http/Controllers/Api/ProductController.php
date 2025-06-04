@@ -47,6 +47,8 @@ class ProductController extends Controller
         }
 
 
+
+        //test git
         $product = Product::create([
             'product_name' => $validated['product_name'],
             'description' => $validated['description'],
