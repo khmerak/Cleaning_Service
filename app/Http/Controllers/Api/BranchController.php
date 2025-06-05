@@ -41,6 +41,7 @@ class BranchController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
+
             $image = $request->file('image');
             $filename = time() . '_' . '.' . $image->getClientOriginalExtension();
             $image->storeAs('branches', $filename, 'public');
@@ -78,7 +79,7 @@ class BranchController extends Controller
             'phone' => 'required|string|max:15',
             'email' => 'required|email|max:255',
             'description' => 'nullable|string|max:500',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:6144', 
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:6144',
             'location' => 'required|string|max:255',
         ]);
 

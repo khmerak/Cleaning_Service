@@ -40,11 +40,11 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-            $filename = $filename . '_' . time() . '.' . $image->getClientOriginalExtension(); // Add dot before extension
+            $filename =  time() . '.' . $image->getClientOriginalExtension(); // Add dot before extension
             $image->storeAs('products', $filename, 'public');
             $imagePath = 'products/' . $filename;
         }
+
 
 
 

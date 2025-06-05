@@ -8,8 +8,11 @@ use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\PositionController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\Service_Category as ApiService_Category;
+use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\UploadController;
 use App\Models\Employee;
+use App\Models\Service_category;
 
 Route::get('/branches', [BranchController::class,'get'])->name('branches');
 Route::post('/branches', [BranchController::class,'store'])->name('branches_store');
@@ -46,4 +49,14 @@ Route::get('/employees',[EmployeeController::class,'get'])->name('employee');
 Route::post('/employees',[EmployeeController::class,'store'])->name('employee_store');
 Route::put('/employees/{id}',[EmployeeController::class,'update'])->name('employee_update');
 Route::delete('/employees/{id}',[EmployeeController::class,'destroy'])->name('employee_delete');
+
+Route::get('/service_categories', [ApiService_Category::class, 'get'])->name('service_categories');
+Route::post('/service_categories', [ApiService_Category::class, 'store'])->name('service_categories_store');
+Route::put('/service_categories/{id}', [ApiService_Category::class, 'update'])->name('service_categories_update');
+Route::delete('/service_categories/{id}', [ApiService_Category::class, 'destroy'])->name('service_categories_destroy');
+
+Route::get('/services',[ServiceController::class,'get'])->name('get_services');
+Route::post('/services',[ServiceController::class,'store'])->name('store_service');
+Route::put('/services/{idd}',[ServiceController::class,'update'])->name('update_service');
+Route::delete('/service/{id}',[ServiceController::class,'destroy'])->name('delete_service');
 

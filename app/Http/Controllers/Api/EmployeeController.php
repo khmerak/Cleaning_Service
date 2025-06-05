@@ -31,7 +31,6 @@ class EmployeeController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
-            'position' => 'required|string|max:255',
             'branch_id' => 'required|exists:branches,id',
             'address' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
@@ -39,13 +38,14 @@ class EmployeeController extends Controller
             'salary' => 'required|numeric|min:0',
             'status' => 'required|in:active,inactive',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:6011',
-            'email' => 'required|email|unique:employees,email,',
+            'email' => 'required|email|unique:employees,email',
             'position_id' => 'required|exists:positions,id',
         ]);
+
         $imagePath = null;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '_' . $image->getClientOriginalExtension();
+        if ($request->hasFile('profile_picture')) {
+            $image = $request->file('profile_picture');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('employees', $filename, 'public');
             $imagePath = 'employees/' . $filename;
         }
@@ -54,7 +54,6 @@ class EmployeeController extends Controller
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'phone' => $request->input('phone'),
-            'position' => $request->input('position'),
             'branch_id' => $request->input('branch_id'),
             'address' => $request->input('address'),
             'date_of_birth' => $request->input('date_of_birth'),
@@ -92,7 +91,6 @@ class EmployeeController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
-            'position' => 'required|string|max:255',
             'branch_id' => 'required|exists:branches,id',
             'address' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
@@ -113,7 +111,6 @@ class EmployeeController extends Controller
         $employee->first_name = $request->input('first_name');
         $employee->last_name = $request->input('last_name');
         $employee->phone = $request->input('phone');
-        $employee->position = $request->input('position');
         $employee->branch_id = $request->input('branch_id');
         $employee->address = $request->input('address');
         $employee->date_of_birth = $request->input('date_of_birth');
@@ -125,10 +122,10 @@ class EmployeeController extends Controller
 
         if ($request->hasFile('profile_picture')) {
             // Delete old image if exists
-            if ($employee->image && Storage::disk('public')->exists($employee->image)) {
-                Storage::disk('public')->delete($employee->image);
+            if ($employee->profile_picture && Storage::disk('public')->exists($employee->profile_picture)) {
+                Storage::disk('public')->delete($employee->profile_picture);
             }
-            $employee->image = $request->file('profile_picture')->store('employees', 'public');
+            $employee->profile_picture = $request->file('profile_picture')->store('employees', 'public');
         }
 
         $employee->save();
@@ -136,20 +133,21 @@ class EmployeeController extends Controller
         return response()->json($employee, 200);
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request, string $id)
     {
-        $employees = Employee::findOrFail($id);
-        if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($employees->image && Storage::disk('public')->exists($employees->image)) {
-                Storage::disk('public')->delete($employees->image);
-            }
-            $employees->image = $request->file('image')->store('employees', 'public');
+        $employee = Employee::findOrFail($id);
+
+        // Delete old image if it exists
+        if ($employee->profile_picture && Storage::disk('public')->exists($employee->profile_picture)) {
+            Storage::disk('public')->delete($employee->profile_picture);
         }
-        $employees->delete();
+
+        $employee->delete();
+
         return response()->json(['message' => 'Employee deleted successfully'], 200);
     }
 }

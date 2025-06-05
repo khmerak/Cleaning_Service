@@ -61,8 +61,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link ">
                                 <i class="nav-icon fa-solid fa-square-poll-vertical"></i>
@@ -114,19 +112,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
-                                    Empoyees 
+                                    Empoyees
                                     <i class="right fas fa-angle-right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview ml-3">
                                 <li class="nav-item">
-                                    <a href="{{route('position')}}" class="nav-link">
+                                    <a href="{{ route('position') }}" class="nav-link">
                                         <p>Position</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('employee')}}" class="nav-link">
+                                    <a href="{{ route('employee') }}" class="nav-link">
                                         <p>Employee</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open1">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-bell"></i>
+                                <p>
+                                    Service Management
+                                    <i class="right fas fa-angle-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview ml-3">
+                                <li class="nav-item">
+                                    <a href="{{ route('service_category') }}" class="nav-link">
+                                        <p>Service Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('service')}}" class="nav-link">
+                                        <p>Service</p>
                                     </a>
                                 </li>
                             </ul>

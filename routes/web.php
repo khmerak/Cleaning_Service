@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\PositionController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\Service_Category;
+use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +38,9 @@ Route::get('/dashboard/product', [ProductController::class, 'index'])->name('pro
 Route::get('/dashboard/upload', [UploadController::class, 'index'])->name('upload');
 Route::get('/dashboard/customer', [CustomerController::class, 'index'])->name('customer');
 Route::get('/dashboard/position', [PositionController::class, 'index'])->name('position');
-Route::get('/emloyee',[EmployeeController::class,'index'])->name('employee');
+Route::get('/employees',[EmployeeController::class,'index'])->name('employee');
+Route::get('/dashboard/service_category', [Service_Category::class, 'index'])->name('service_category');
+Route::get('/services',[ServiceController::class,'index'])->name('service');
 
 
 // require __DIR__.'/auth.php';
