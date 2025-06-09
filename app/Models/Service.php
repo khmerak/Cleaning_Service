@@ -18,4 +18,9 @@ class Service extends Model
         'image',
         'type',
     ];
+
+    public function service_category()
+    {
+        return $this->belongsTo(Service_Category::class, 'category_id');
+    }
 }

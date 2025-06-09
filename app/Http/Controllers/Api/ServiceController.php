@@ -19,7 +19,7 @@ class ServiceController extends Controller
 
     public function get()
     {
-        $services = Service::all();
+        $services = Service::with('service_category')->get();
         return response()->json($services, 200);
     }
     /**
@@ -33,7 +33,7 @@ class ServiceController extends Controller
             'price' => 'required|numeric|min:0',
             'category_id' => 'required|exists:service_categories,id', // or 'categories' depending on your table
             'type' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:6144', // 6MB max
         ]);
 
         $data = $request->only(['service_name', 'description', 'price', 'category_id', 'type']);
@@ -68,7 +68,7 @@ class ServiceController extends Controller
             'price' => 'required|numeric|min:0',
             'category_id' => 'required|exists:service_categories,id',
             'type' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:6144', // 6MB max
         ]);
 
         $service = Service::findOrFail($id);
@@ -95,7 +95,7 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request ,string $id)
     {
         $service = Service::findOrFail($id);
 

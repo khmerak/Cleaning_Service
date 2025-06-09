@@ -6,31 +6,34 @@ use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\PositionController;
+use App\Http\Controllers\Api\Product_previewController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\Service_Category;
+use App\Http\Controllers\Api\Service_previewController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\UploadController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Product_Preview;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
+// Route::get('/', function () {
+//     return view('Dashboard.dashboard');
+// })->name('home');
+
 Route::get('/', function () {
     return view('Dashboard.dashboard');
-})->name('home');
+})->middleware(['auth', 'verified'])->name('home');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// Route::middleware('auth')->group(function () {
-
-// });
+Route::middleware('auth')->group(function () {
 Route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard');
 Route::get('/dashboard/branch', [BranchController::class, 'index'])->name('branch');
 Route::get('/dashboard/category', [CategoryController::class, 'index'])->name('category');
@@ -39,8 +42,15 @@ Route::get('/dashboard/upload', [UploadController::class, 'index'])->name('uploa
 Route::get('/dashboard/customer', [CustomerController::class, 'index'])->name('customer');
 Route::get('/dashboard/position', [PositionController::class, 'index'])->name('position');
 Route::get('/employees',[EmployeeController::class,'index'])->name('employee');
-Route::get('/dashboard/service_category', [Service_Category::class, 'index'])->name('service_category');
-Route::get('/services',[ServiceController::class,'index'])->name('service');
+Route::get('/dashboard/dashboard/service_category', [Service_Category::class, 'index'])->name('service_category');
+Route::get('/dashboard/services',[ServiceController::class,'index'])->name('service');
+Route::get('/dashboard/product_preview', [Product_previewController::class, 'index'])->name('product_preview');
+Route::get('/dashboard/service_preview', [Service_previewController::class, 'index'])->name('service_preview');
+Route::get('/dashboard/user', [UserController::class, 'index'])->name('user');
+});
 
-
-// require __DIR__.'/auth.php';
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
+require __DIR__.'/auth.php';

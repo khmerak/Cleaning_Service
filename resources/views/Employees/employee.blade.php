@@ -1,5 +1,63 @@
 @extends('layouts.master')
 
+@section('navbar')
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{route('employee')}}" class="nav-link">Empoyee</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{route('position')}}" class="nav-link">Position</a>
+            </li>
+            <li class="nav-item dropdown" style="position: absolute; right: 30px; top: 9px;">
+                  <div class="hidden sm:flex sm:items-center sm:ms-6">
+                      <x-dropdown align="right" width="48">
+                          <x-slot name="trigger">
+                              <button
+                                  class="inline-flex items-center p-2 border border-transparent text-lg leading-4 font-medium  text-black-900  hover:text-blue-900 focus:outline-none transition ease-in-out duration-150">
+
+                                  <div
+                                      class="bg-blue-900  flex items-center justify-center ">
+                                      {{ Auth::user()->name }}
+                                  </div>
+                                  <div class="ms-1">
+                                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                          viewBox="0 0 20 20">
+                                          <path fill-rule="evenodd"
+                                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                              clip-rule="evenodd" />
+                                      </svg>
+                                  </div>
+                              </button>
+
+                          </x-slot>
+
+                          <x-slot name="content">
+                              <x-dropdown-link :href="route('profile.edit')">
+                                  {{ __('Profile') }}
+                              </x-dropdown-link>
+
+                              <!-- Authentication -->
+                              <form method="POST" action="{{ route('logout') }}">
+                                  @csrf
+
+                                  <x-dropdown-link :href="route('logout')"
+                                      onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                      {{ __('Log Out') }}
+                                  </x-dropdown-link>
+                              </form>
+                          </x-slot>
+                      </x-dropdown>
+                  </div>
+              </li>
+        </ul>
+    </nav>
+@endsection
 @section('content')
     <div id="app">
         <!-- Modal -->
@@ -9,7 +67,7 @@
                 <div class="modal-content">
                     <form @submit.prevent="form.id ? updateEmployee() : addEmployee()">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Add Customer</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Add Employee</h5>
                         </div>
                         <div class="modal-body">
                             @csrf
@@ -47,7 +105,8 @@
                                     <label for="position" class="form-label">Position</label>
                                     <select class="form-control" id="position" v-model="form.position_id" required>
                                         <option value="">Select Position</option>
-                                        <option v-for="position in positions" :value="position.id">[[ position.position_name ]]
+                                        <option v-for="position in positions" :value="position.id">[[
+                                            position.position_name ]]
                                         </option>
                                     </select>
                                 </div>
@@ -57,7 +116,8 @@
                                     <label for="branch" class="form-label">Branch</label>
                                     <select class="form-control" id="branch" v-model="form.branch_id" required>
                                         <option value="">Select Branch</option>
-                                        <option v-for="branch in branches" :value="branch.id">[[ branch.branch_name ]]</option>
+                                        <option v-for="branch in branches" :value="branch.id">[[ branch.branch_name ]]
+                                        </option>
                                     </select>
                                 </div>
 
@@ -121,12 +181,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Customer</h1>
+                        <h1 class="m-0">Employee</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Customer Page</li>
+                            <li class="breadcrumb-item active">Employee Page</li>
                         </ol>
                     </div>
                 </div>
@@ -165,11 +225,12 @@
                                     <tr v-for="(employee, index) in employees" :key="employee.id">
                                         <td>[[ index + 1 ]]</td>
                                         <td>
-                                            <img v-if="employee.profile_picture" :src="'/storage/' + employee.profile_picture"
-                                                width="50" height="50" onerror="this.src='/image_error.png';" />
+                                            <img v-if="employee.profile_picture"
+                                                :src="'/storage/' + employee.profile_picture" width="50"
+                                                height="50" onerror="this.src='/image_error.png';" />
                                             <img v-else style="width: 80px; border-radius: 10px" src="/no-image.png">
                                         </td>
-                                        <td>[[ employee.first_name ]]  [[employee.last_name ]]</td>
+                                        <td>[[ employee.first_name ]] [[employee.last_name ]]</td>
                                         <td>[[employee.phone]]</td>
                                         <td>[[ employee.email ]]</td>
                                         <td>[[ employee.position_id ]]</td>
@@ -187,8 +248,7 @@
                                             <button class="btn btn-primary" @click="editEmployee(employee)">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-danger ml-2"
-                                                @click="deleteEmployee(employee.id)">
+                                            <button class="btn btn-danger ml-2" @click="deleteEmployee(employee.id)">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </td>
@@ -214,7 +274,7 @@
                 return {
                     employees: [],
                     branches: [],
-                    positions:[],
+                    positions: [],
                     form: {
                         id: null,
                         first_name: '',

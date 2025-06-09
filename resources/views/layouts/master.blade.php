@@ -21,6 +21,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     {{-- <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}"> --}}
     <!-- Theme style -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
 </head>
 
@@ -28,29 +29,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">POS</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
-            </ul>
-        </nav>
+        @yield('navbar')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed">
             <!-- Brand Logo -->
             <a href="{{ route('dashboard') }}" class="brand-link">
-                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="{{ asset('/logocleaning.png') }}" alt="Service Cleaning Logo"
+                    class="brand-image" style="opacity: 1,">
                 <span class="brand-text font-weight-light">Service Cleaning</span>
             </a>
 
@@ -85,87 +72,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item menu-open1">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tag"></i>
-                                <p>
-                                    Product Management
-                                    <i class="right fas fa-angle-right"></i>
-                                </p>
+                        <li class="nav-item">
+                            <a href="{{ route('product') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-box-archive"></i>
+                                <p>Product</p>
                             </a>
-                            <ul class="nav nav-treeview ml-3">
-                                <li class="nav-item">
-                                    <a href="{{ route('category') }}" class="nav-link">
-                                        <i class="fa-solid fa-boxes-stacked"></i>
-                                        <p>Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('product') }}" class="nav-link">
-                                        <i class="fa-solid fa-box-archive"></i>
-                                        <p>Product</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li class="nav-item menu-open1">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-plus"></i>
-                                <p>
-                                    Empoyees
-                                    <i class="right fas fa-angle-right"></i>
-                                </p>
+                        <li class="nav-item">
+                            <a href="{{ route('employee') }}" class="nav-link">
+                                <i class="nav-icon fa fa-user-group"></i>
+                                <p>Employee</p>
                             </a>
-                            <ul class="nav nav-treeview ml-3">
-                                <li class="nav-item">
-                                    <a href="{{ route('position') }}" class="nav-link">
-                                        <p>Position</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('employee') }}" class="nav-link">
-                                        <p>Employee</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li class="nav-item menu-open1">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-bell"></i>
-                                <p>
-                                    Service Management
-                                    <i class="right fas fa-angle-right"></i>
-                                </p>
+                        <li class="nav-item">
+                            <a href="{{ route('service') }}" class="nav-link">
+                                <i class="nav-icon fa fa-bell"></i>
+                                <p>Service</p>
                             </a>
-                            <ul class="nav nav-treeview ml-3">
-                                <li class="nav-item">
-                                    <a href="{{ route('service_category') }}" class="nav-link">
-                                        <p>Service Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('service')}}" class="nav-link">
-                                        <p>Service</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li class="nav-item menu-open1">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>
-                                    Setting
-                                    <i class="right fas fa-angle-right"></i>
-                                </p>
+                        <li class="nav-item">
+                            <a href="{{ route('upload') }}" class="nav-link">
+                                <i class="nav-icon fa-regular fa-folder-open"></i>
+                                <p>Upload</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('upload') }}" class="nav-link">
-                                        <i class="fa-regular fa-folder-open"></i>
-                                        <p>Upload</p>
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user') }}" class="nav-link">
+                                <i class="nav-icon fa fa-user"></i>
+                                <p>User</p>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -195,6 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
+
     <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -204,7 +140,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     @yield('scripts')
 </body>
+
 
 </html>
