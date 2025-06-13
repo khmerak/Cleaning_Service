@@ -22,6 +22,15 @@ class ServiceController extends Controller
         $services = Service::with('service_category')->get();
         return response()->json($services, 200);
     }
+    public function get_service()
+    {
+        $services = Service::with('service_category')
+            ->take(4) // or ->limit(4)
+            ->get();
+
+        return response()->json($services, 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -95,7 +104,7 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request ,string $id)
+    public function destroy(Request $request, string $id)
     {
         $service = Service::findOrFail($id);
 

@@ -99,7 +99,7 @@
 
                                         <div class="d-flex justify-content-between align-items-center">
                                             <button class="btn btn-sm btn-primary" @click="bookService(service)">
-                                            Book Now
+                                            Request Quote
                                         </button>
                                         <i class="fa fa-heart"></i>
                                         </div>
@@ -107,8 +107,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

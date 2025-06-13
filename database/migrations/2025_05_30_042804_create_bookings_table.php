@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('branch_id')->constrained('branches')->onDelete('cascade')->onUpdate('cascade');
             $table->date('booking_date'); // Date of the booking
             $table->decimal('amount', 10, 2); // Amount for the booking
             $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending'); // Status of the booking

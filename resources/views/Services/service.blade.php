@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 
 @section('navbar')
@@ -18,47 +17,46 @@
                 <a href="{{ route('service_preview') }}" class="nav-link">Service Preview</a>
             </li>
             <li class="nav-item dropdown" style="position: absolute; right: 30px; top: 9px;">
-                  <div class="hidden sm:flex sm:items-center sm:ms-6">
-                      <x-dropdown align="right" width="48">
-                          <x-slot name="trigger">
-                              <button
-                                  class="inline-flex items-center p-2 border border-transparent text-lg leading-4 font-medium  text-black-900  hover:text-blue-900 focus:outline-none transition ease-in-out duration-150">
+                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button
+                                class="inline-flex items-center p-2 border border-transparent text-lg leading-4 font-medium  text-black-900  hover:text-blue-900 focus:outline-none transition ease-in-out duration-150">
 
-                                  <div
-                                      class="bg-blue-900  flex items-center justify-center ">
-                                      {{ Auth::user()->name }}
-                                  </div>
-                                  <div class="ms-1">
-                                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 20 20">
-                                          <path fill-rule="evenodd"
-                                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                              clip-rule="evenodd" />
-                                      </svg>
-                                  </div>
-                              </button>
+                                <div class="bg-blue-900  flex items-center justify-center ">
+                                    {{ Auth::user()->name }}
+                                </div>
+                                <div class="ms-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
 
-                          </x-slot>
+                        </x-slot>
 
-                          <x-slot name="content">
-                              <x-dropdown-link :href="route('profile.edit')">
-                                  {{ __('Profile') }}
-                              </x-dropdown-link>
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
 
-                              <!-- Authentication -->
-                              <form method="POST" action="{{ route('logout') }}">
-                                  @csrf
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-                                  <x-dropdown-link :href="route('logout')"
-                                      onclick="event.preventDefault();
+                                <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                      {{ __('Log Out') }}
-                                  </x-dropdown-link>
-                              </form>
-                          </x-slot>
-                      </x-dropdown>
-                  </div>
-              </li>
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+            </li>
         </ul>
     </nav>
 @endsection
@@ -137,13 +135,14 @@
         <!-- Content body -->
         <div class="content">
             <div class="container-fluid">
-                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
                     <i class="fas fa-plus"></i> Add Service
                 </button>
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class=" table table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -164,22 +163,31 @@
                                                 height="50" onerror="this.src='/image_error.png';" />
                                             <img v-else style="width: 80px; border-radius: 10px" src="/no-image.png">
                                         </td>
-                                        <td>[[ service.service_name ]]</td>
+
+                                        <!-- Service name: larger and bold -->
+                                        <td class="fw-bold" style="font-size: 1.2rem;">[[ service.service_name ]]</td>
+
                                         <td>[[ service.type ]]</td>
                                         <td>$ [[ service.price ]]</td>
                                         <td>[[ service.category_id ]]</td>
-                                        <td>[[ service.description ]]</td>
+
+                                        <!-- Description: larger font, word wrap -->
+                                        <td style="font-size: 1.1rem; white-space: pre-line; max-width: 250px;">
+                                            [[ service.description ]]
+                                        </td>
+
                                         <td>
-                                            <button class="btn btn-outline-primary" @click="editService(service)">
-                                                <i class="fas fa-pencil"></i> Edit
+                                            <button class="btn btn-primary" @click="editService(service)">
+                                                <i class="fas fa-edit p-0"></i>
                                             </button>
-                                            <button class="btn btn-outline-danger ml-2" @click="deleteService(service.id)">
-                                                <i class="fas fa-trash"></i> Delete
+                                            <button class="btn btn-danger ml-2" @click="deleteService(service.id)">
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -247,7 +255,7 @@
                         bootstrap.Modal.getInstance(document.getElementById('staticBackdrop')).hide();
                     }).catch(error => {
                         Swal.fire('Error', error.response?.data?.message || 'Something went wrong',
-                        'error');
+                            'error');
                     });
                 },
                 updateService() {

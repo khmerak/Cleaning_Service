@@ -15,6 +15,9 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('product_preview') }}" class="nav-link">Product Preview</a>
             </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('showOrder') }}" class="nav-link">Order</a>
+            </li>
             <li class="nav-item dropdown" style="position: absolute; right: 30px; top: 9px;">
                   <div class="hidden sm:flex sm:items-center sm:ms-6">
                       <x-dropdown align="right" width="48">
@@ -159,7 +162,7 @@
                                         <td>[[ index + 1 ]]</td>
                                         <td>
                                             <img v-if="product.image" :src="'/storage/' + product.image" width="50"
-                                                height="50" onerror="this.src='/image_error.png';" />
+                                                height="50" onerror="this.src='/image_error.png';" class="object-cover" />
                                             <img v-else style="width: 80px; border-radius: 10px" src="/no-image.png">
                                         </td>
                                         <td>[[ product.product_name ]]</td>

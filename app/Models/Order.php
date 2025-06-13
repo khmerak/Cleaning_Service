@@ -12,11 +12,20 @@ class Order extends Model
     protected $table = 'orders';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'customer_id',
-        'branch_id',
-        'quantity',
+        'user_id',
         'status',
         'order_date',
         'remarks',
     ];
+
+    public function orderItems()
+    {
+        return $this->hasMany(Order_items::class, 'order_id');
+    }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class);
+    }
+    
 }
