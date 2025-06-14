@@ -88,7 +88,8 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-3 mb-2" v-for="service in services" :key="service.id">
                                 <div class="card">
-                                    <img :src="fullImagePath(service.image)" alt="Service Image" class="card-img-top mx-auto mt-3 d-block"
+                                    <img :src="fullImagePath(service.image)" alt="Service Image"
+                                        class="card-img-top mx-auto mt-3 d-block"
                                         style="width: 200px; height: 150px; object-fit: cover;">
                                     <div class="card-body">
                                         <p class="card-text text-muted">[[ service.service_category.service_category_name ]]
@@ -99,9 +100,9 @@
 
                                         <div class="d-flex justify-content-between align-items-center">
                                             <button class="btn btn-sm btn-primary" @click="bookService(service)">
-                                            Request Quote
-                                        </button>
-                                        <i class="fa fa-heart"></i>
+                                                Request Quote
+                                            </button>
+                                            <i class="fa fa-heart"></i>
                                         </div>
                                     </div>
                                 </div>
