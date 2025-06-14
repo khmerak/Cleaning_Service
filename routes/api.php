@@ -82,10 +82,9 @@ Route::get('/order_items',[OrderController::class, 'get']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('cart/add', [ProductAddToCartController::class, 'addToCart']);
     Route::apiResource('/cart',ProductAddToCartController::class);
-
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+});
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
 Route::middleware('auth:sanctum')->put('/cart/{id}', [ProductAddToCartController::class, 'update']);
