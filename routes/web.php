@@ -44,7 +44,7 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/employees', [EmployeeController::class, 'index'])->name('employee');
     Route::get('/dashboard/dashboard/service_category', [Service_Category::class, 'index'])->name('service_category');
     Route::get('/dashboard/services', [ServiceController::class, 'index'])->name('service');
-    Route::get('/dashboard/product_preview', [Product_previewController::class, 'index'])->name('product_preview');
+    Route::get('/dashboard/product_preview', [Product_previewController::class, 'index'])->name('preview');
     Route::get('/dashboard/service_preview', [Service_previewController::class, 'index'])->name('service_preview');
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('user');
     Route::get('/dashboard/order',[OrderController::class,'showOrder'])->name('showOrder');

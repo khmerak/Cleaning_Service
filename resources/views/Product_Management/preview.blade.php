@@ -13,10 +13,7 @@
                 <a href="{{ route('category') }}" class="nav-link">Category</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('product_preview') }}" class="nav-link">Product Preview</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('showOrder') }}" class="nav-link">Order</a>
+                <a href="{{ route('preview') }}" class="nav-link">Product Preview</a>
             </li>
             <li class="nav-item dropdown" style="position: absolute; right: 30px; top: 9px;">
                   <div class="hidden sm:flex sm:items-center sm:ms-6">
