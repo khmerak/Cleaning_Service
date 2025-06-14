@@ -178,7 +178,7 @@
             },
             methods: {
                 getUsers() {
-                    axios.get('http://127.0.0.1:8000/api/users')
+                    axios.get('https://a.khmercleaningservice.us/api/users')
                         .then(res => {
                             this.users = res.data;
                         });
@@ -223,7 +223,7 @@
                     formData.append('email', this.form.email);
                     formData.append('role', this.form.role);
 
-                    axios.post(`http://127.0.0.1:8000/api/users/${this.form.id}?_method=PUT`, formData)
+                    axios.post(`https://a.khmercleaningservice.us/api/users/${this.form.id}?_method=PUT`, formData)
                         .then(() => {
                             Swal.fire('Updated!', 'User updated successfully!', 'success');
                             this.getUsers();
@@ -254,7 +254,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then(result => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/users/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/users/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'User has been deleted.', 'success');
                                     this.getUsers();
