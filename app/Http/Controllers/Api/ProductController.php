@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -40,14 +41,17 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename =  time() . '.' . $image->getClientOriginalExtension(); // Add dot before extension
+            $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('products', $filename, 'public');
+
+            // Manually copy to public_html/storage/products
+            File::copy(
+                storage_path('app/public/products/' . $filename),
+                public_path('storage/products/' . $filename)
+            );
+
             $imagePath = 'products/' . $filename;
         }
-
-
-
-
         //test git
         $product = Product::create([
             'product_name' => $validated['product_name'],
