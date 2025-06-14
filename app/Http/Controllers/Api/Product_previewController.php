@@ -14,7 +14,7 @@ class Product_previewController extends Controller
      */
     public function index()
     {
-        return view('Product_management.product_preview');
+        return view('Product_management.preview');
     }
 
     public function get()
