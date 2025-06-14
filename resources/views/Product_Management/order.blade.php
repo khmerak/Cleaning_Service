@@ -114,7 +114,7 @@
                 getOrderItems() {
                     this.loading = true;
                     this.error = null;
-                    axios.get('http://127.0.0.1:8000/api/order_items')
+                    axios.get('https://a.khmercleaningservice.us/api/order_items')
                         .then(res => {
                             this.orderItems = res.data;
                         })

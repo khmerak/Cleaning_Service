@@ -180,7 +180,7 @@
             },
             methods: {
                 getCustomers() {
-                    axios.get('http://127.0.0.1:8000/api/customers')
+                    axios.get('https://a.khmercleaningservice.us/api/customers')
                         .then(response => {
                             this.customers = response.data;
                             console.log(this.customers);
@@ -192,7 +192,7 @@
                     formData.append('phone', this.form.phone);
                     formData.append('email', this.form.email);
                     formData.append('address', this.form.address);
-                    axios.post('http://127.0.0.1:8000/api/customers', formData, {
+                    axios.post('https://a.khmercleaningservice.us/api/customers', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -214,7 +214,7 @@
                     formData.append('email', this.form.email);
                     formData.append('address', this.form.address);
 
-                    axios.post(`http://127.0.0.1:8000/api/customers/${this.form.id}?_method=PUT`, formData, {
+                    axios.post(`https://a.khmercleaningservice.us/api/customers/${this.form.id}?_method=PUT`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -258,7 +258,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/customers/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/customers/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Customer has been deleted.', 'success');
                                     this.getCustomers();

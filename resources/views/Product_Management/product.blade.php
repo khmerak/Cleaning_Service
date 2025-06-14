@@ -215,13 +215,13 @@
             },
             methods: {
                 getProducts() {
-                    axios.get('http://127.0.0.1:8000/api/products')
+                    axios.get('https://a.khmercleaningservice.us/api/products')
                         .then(response => {
                             this.products = response.data;
                         }).catch(console.error);
                 },
                 getCategories() {
-                    axios.get('http://127.0.0.1:8000/api/categories')
+                    axios.get('https://a.khmercleaningservice.us/api/categories')
                         .then(response => {
                             this.categories = response.data;
                         }).catch(console.error);
@@ -240,7 +240,7 @@
                     }
                     formData.append('_method', 'POST');
 
-                    axios.post('http://127.0.0.1:8000/api/products', formData, {
+                    axios.post('https://a.khmercleaningservice.us/api/products', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -267,7 +267,7 @@
                         formData.append('image', this.form.image);
                     }
 
-                    axios.post(`http://127.0.0.1:8000/api/products/${this.form.id}`, formData, {
+                    axios.post(`https://a.khmercleaningservice.us/api/products/${this.form.id}`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -304,7 +304,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/products/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/products/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Product has been deleted.', 'success');
                                     this.getProducts();

@@ -172,7 +172,7 @@
             },
             methods: {
                 getUpload() {
-                    axios.get('http://127.0.0.1:8000/api/uploads')
+                    axios.get('https://a.khmercleaningservice.us/api/uploads')
                         .then(response => {
                             this.uploads = response.data;
                         }).catch(console.error);
@@ -184,7 +184,7 @@
                         formData.append('image', this.form.image);
                     }
 
-                    axios.post('http://127.0.0.1:8000/api/uploads', formData, {
+                    axios.post('https://a.khmercleaningservice.us/api/uploads', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -207,7 +207,7 @@
                         formData.append('image', this.form.image);
                     }
 
-                    axios.post(`http://127.0.0.1:8000/api/uploads/${this.form.id}`, formData, {
+                    axios.post(`https://a.khmercleaningservice.us/api/uploads/${this.form.id}`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -240,7 +240,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/uploads/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/uploads/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Image has been deleted.', 'success');
                                     this.getUpload();

@@ -130,12 +130,12 @@
             data() {
                 return {
                     products: [],
-                    baseUrl: 'http://127.0.0.1:8000/storage/',
+                    baseUrl: 'https://a.khmercleaningservice.us/storage/',
                 };
             },
             methods: {
                 getProducts() {
-                    axios.get('http://127.0.0.1:8000/api/products')
+                    axios.get('https://a.khmercleaningservice.us/api/products')
                         .then(response => {
                             this.products = response.data;
                         })

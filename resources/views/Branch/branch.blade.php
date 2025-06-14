@@ -205,7 +205,7 @@
             },
             methods: {
                 getBranches() {
-                    axios.get('https://127.0.0.1:8000/api/branches')
+                    axios.get('https://a.khmercleaningservice.us/api/branches')
                         .then(response => {
                             this.branches = response.data;
                         }).catch(console.error);
@@ -221,7 +221,7 @@
                         formData.append('image', this.form.logo);
                     }
 
-                    axios.post('https://127.0.0.1:8000/api/branches', formData, {
+                    axios.post('https://a.khmercleaningservice.us/api/branches', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -247,7 +247,7 @@
                         formData.append('image', this.form.logo);
                     }
 
-                    axios.post(`https://127.0.0.1:8000/api/branches/${this.form.id}?_method=PUT`, formData, {
+                    axios.post(`https://a.khmercleaningservice.us/api/branches/${this.form.id}?_method=PUT`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -284,7 +284,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`https://127.0.0.1:8000/api/branches/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/branches/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Branch has been deleted.', 'success');
                                     this.getBranches();

@@ -160,7 +160,7 @@
             },
             methods: {
                 getPositions() {
-                    axios.get('http://127.0.0.1:8000/api/positions')
+                    axios.get('https://a.khmercleaningservice.us/api/positions')
                         .then(response => {
                             this.positions = response.data;
                         }).catch(console.error);
@@ -187,7 +187,7 @@
                     const formData = new FormData();
                     formData.append('position_name', this.form.name);
 
-                    axios.post(`http://127.0.0.1:8000/api/positions/${this.form.id}?_method=PUT`, formData, {
+                    axios.post(`https://a.khmercleaningservice.us/api/positions/${this.form.id}?_method=PUT`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -222,7 +222,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/positions/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/positions/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Position has been deleted.', 'success');
                                     this.getPositions();

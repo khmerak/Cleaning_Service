@@ -244,7 +244,7 @@
                         formData.append('image', this.form.image);
                     }
 
-                    axios.post('http://127.0.0.1:8000/api/services', formData, {
+                    axios.post('https://a.khmercleaningservice.us/api/services', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -272,7 +272,7 @@
                     }
                     formData.append('_method', 'PUT');
 
-                    axios.post(`http://127.0.0.1:8000/api/services/${this.form.id}`, formData, {
+                    axios.post(`https://a.khmercleaningservice.us/api/services/${this.form.id}`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -309,7 +309,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/services/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/services/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Service has been deleted.', 'success');
                                     this.getServices();

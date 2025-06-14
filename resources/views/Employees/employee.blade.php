@@ -294,19 +294,19 @@
             },
             methods: {
                 getEmployees() {
-                    axios.get('http://127.0.0.1:8000/api/employees')
+                    axios.get('https://a.khmercleaningservice.us/api/employees')
                         .then(response => {
                             this.employees = response.data;
                         }).catch(console.error);
                 },
                 getBranches() {
-                    axios.get('http://127.0.0.1:8000/api/branches')
+                    axios.get('https://a.khmercleaningservice.us/api/branches')
                         .then(response => {
                             this.branches = response.data;
                         }).catch(console.error);
                 },
                 getPositions() {
-                    axios.get('http://127.0.0.1:8000/api/positions')
+                    axios.get('https://a.khmercleaningservice.us/api/positions')
                         .then(response => {
                             this.positions = response.data;
                         }).catch(console.error);
@@ -328,7 +328,7 @@
                         formData.append('profile_picture', this.form.profile_picture);
                     }
 
-                    axios.post('http://127.0.0.1:8000/api/employees', formData, {
+                    axios.post('https://a.khmercleaningservice.us/api/employees', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -360,7 +360,7 @@
                         formData.append('profile_picture', this.form.profile_picture);
                     }
 
-                    axios.post(`http://127.0.0.1:8000/api/employees/${this.form.id}`, formData, {
+                    axios.post(`https://a.khmercleaningservice.us/api/employees/${this.form.id}`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -403,7 +403,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/employees/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/employees/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Employee has been deleted.', 'success');
                                     this.getEmployees();

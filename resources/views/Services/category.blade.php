@@ -170,7 +170,7 @@
             },
             methods: {
                 getCategories() {
-                    axios.get('http://127.0.0.1:8000/api/service_categories')
+                    axios.get('https://a.khmercleaningservice.us/api/service_categories')
                         .then(response => {
                             this.service_categories = response.data;
                         }).catch(console.error);
@@ -179,7 +179,7 @@
                     const formData = new FormData();
                     formData.append('service_category_name', this.form.name);
                     formData.append('description', this.form.description);
-                    axios.post('http://127.0.0.1:8000/api/service_categories', formData, {
+                    axios.post('https://a.khmercleaningservice.us/api/service_categories', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -199,7 +199,7 @@
                     formData.append('service_category_name', this.form.name);
                     formData.append('description', this.form.description);
 
-                    axios.post(`http://127.0.0.1:8000/api/service_categories/${this.form.id}?_method=PUT`, formData, {
+                    axios.post(`https://a.khmercleaningservice.us/api/service_categories/${this.form.id}?_method=PUT`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -231,7 +231,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/service_categories/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/service_categories/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Category has been deleted.', 'success');
                                     this.getCategory();
@@ -258,7 +258,7 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`http://127.0.0.1:8000/api/service_categories/${id}`)
+                            axios.delete(`https://a.khmercleaningservice.us/api/service_categories/${id}`)
                                 .then(() => {
                                     Swal.fire('Deleted!', 'Category has been deleted.', 'success');
                                     this.getCategories();
