@@ -83,7 +83,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('cart/add', [ProductAddToCartController::class, 'addToCart']);
     Route::apiResource('/cart',ProductAddToCartController::class);
 });
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
     return $request->user();
 });
 
