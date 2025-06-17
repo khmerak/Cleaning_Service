@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\OrderController;
@@ -75,6 +76,11 @@ Route::get('/product_previews', [Product_previewController::class, 'get'])->name
 
 Route::get('/service_previews', [Service_previewController::class, 'get'])->name('service_previews');
 
+#count 
+Route::get('/countOrder',[DashboardController::class,'countOrders'])->name('count_order');
+Route::get('/count-users', [DashboardController::class, 'countUsers'])->name('count_users');
+
+
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/order_items',[OrderController::class, 'get']);
@@ -86,6 +92,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
     return $request->user();
 });
+
+
 
 Route::middleware('auth:sanctum')->put('/cart/{id}', [ProductAddToCartController::class, 'update']);
 // routes/api.php

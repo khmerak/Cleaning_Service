@@ -34,12 +34,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed">
+        <aside class="main-sidebar elevation-4" style="position: fixed; background-color: #012340;">
             <!-- Brand Logo -->
             <a href="{{ route('dashboard') }}" class="brand-link">
                 <img src="{{ asset('/logocleaning.png') }}" alt="Service Cleaning Logo"
-                    class="brand-image" style="opacity: 1,">
-                <span class="brand-text font-weight-light">Service Cleaning</span>
+                    class="brand-image" style="opacity: 3,">
+                <span class="brand-text text-white">Service Cleaning</span>
             </a>
 
             <!-- Sidebar -->
@@ -50,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard') }}" class="nav-link ">
+                            <a href="{{ route('dashboard') }}" class="nav-link text-white">
                                 <i class="nav-icon fa-solid fa-square-poll-vertical"></i>
                                 <p>
                                     Home
@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('branch') }}" class="nav-link">
+                            <a href="{{ route('branch') }}" class="nav-link text-white">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Branch
@@ -66,7 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('customer') }}" class="nav-link">
+                            <a href="{{ route('customer') }}" class="nav-link text-white">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Customer
@@ -74,31 +74,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('product') }}" class="nav-link">
+                            <a href="{{ route('product') }}" class="nav-link text-white">
                                 <i class="nav-icon fa-solid fa-box-archive"></i>
                                 <p>Product</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('employee') }}" class="nav-link">
+                            <a href="{{ route('employee') }}" class="nav-link text-white">
                                 <i class="nav-icon fa fa-user-group"></i>
                                 <p>Employee</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('service') }}" class="nav-link">
+                            <a href="{{ route('service') }}" class="nav-link text-white">
                                 <i class="nav-icon fa fa-bell"></i>
                                 <p>Service</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('upload') }}" class="nav-link">
+                            <a href="{{ route('upload') }}" class="nav-link text-white">
                                 <i class="nav-icon fa-regular fa-folder-open"></i>
                                 <p>Upload</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user') }}" class="nav-link">
+                            <a href="{{ route('user') }}" class="nav-link text-white">
                                 <i class="nav-icon fa fa-user"></i>
                                 <p>User</p>
                             </a>
@@ -133,6 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
     <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->

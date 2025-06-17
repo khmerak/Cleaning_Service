@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service_category as ModelsService_category;
+use App\Models\Service_category as ServiceCategory;
 use Illuminate\Http\Request;
 
 class Service_Category extends Controller
@@ -18,7 +18,7 @@ class Service_Category extends Controller
 
     public function get()
     {
-        $service_categories = ModelsService_category::all();
+        $service_categories = ServiceCategory::all();
 
         return response()->json($service_categories, 200);
     }
@@ -32,7 +32,7 @@ class Service_Category extends Controller
             'description' => 'nullable|string|max:1000',
         ]);
 
-        $service_category = ModelsService_category::create([
+        $service_category = ServiceCategory::create([
             'service_category_name' => $request->input('service_category_name'),
             'description' => $request->input('description'),
         ]);
@@ -45,7 +45,7 @@ class Service_Category extends Controller
      */
     public function show(string $id)
     {
-        $service_category = ModelsService_category::findOrFail($id);
+        $service_category = ServiceCategory::findOrFail($id);
 
         return response()->json($service_category, 200);
     }
@@ -59,7 +59,7 @@ class Service_Category extends Controller
             'service_category_name' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
         ]);
-        $service_category = ModelsService_category::findOrFail($id);
+        $service_category = ServiceCategory::findOrFail($id);
         $service_category->update([
             'service_category_name' => $request->input('service_category_name'),
             'description' => $request->input('description'),
@@ -72,7 +72,7 @@ class Service_Category extends Controller
      */
     public function destroy(string $id)
     {
-        $service_category = ModelsService_category::findOrFail($id);
+        $service_category = ServiceCategory::findOrFail($id);
         $service_category->delete();
 
         return response()->json(['message' => 'Service category deleted successfully'], 200);
