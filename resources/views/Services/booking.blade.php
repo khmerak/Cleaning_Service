@@ -16,7 +16,7 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('service_preview') }}" class="nav-link">Service Preview</a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
+             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('show_booking') }}" class="nav-link">Booking</a>
             </li>
             <li class="nav-item dropdown" style="position: absolute; right: 30px; top: 9px;">
@@ -65,87 +65,85 @@
 @endsection
 
 @section('content')
-    <div id="app">
-        <!-- Page header -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Service</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Service Preview Page</li>
-                        </ol>
-                    </div>
+<div id="app">
+    <!-- Page header -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Booking List</h1>
                 </div>
-            </div>
-        </div>
-
-        <!-- Content body -->
-        <div class="content">
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3 mb-2" v-for="service in services" :key="service.id">
-                                <div class="card">
-                                    <img :src="fullImagePath(service.image)" alt="Service Image"
-                                        class="card-img-top mx-auto mt-3 d-block"
-                                        style="width: 200px; height: 150px; object-fit: cover;">
-                                    <div class="card-body">
-                                        <p class="card-text text-muted">[[ service.service_category.service_category_name ]]
-                                        </p>
-                                        <h5 class="card-title mb-0">Service: [[ service.service_name ]]</h5>
-                                        <p class="card-text">Area:[[ service.type ]]</p>
-                                        <p class="card-text text-success">Price: $[[ service.price ]]</p>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <button class="btn btn-sm btn-primary" @click="bookService(service)">
-                                                Request Quote
-                                            </button>
-                                            <i class="fa fa-heart"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Booking</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Table -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Branch</th>
+                                <th>Booking Date</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(booking, index) in bookings" :key="booking.id">
+                                <td>[[ index + 1 ]]</td>
+                                <td>[[ booking.customer?.name ]]</td>
+                                <td>[[ booking.service?.service_name ]]</td>
+                                <td>[[ booking.branch?.branch_name ]]</td>
+                                <td>[[ booking.booking_date ]]</td>
+                                <td>[[ booking.remarks ]]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
-
-
 @section('scripts')
-    <script>
-        const {
-            createApp
-        } = Vue;
-        const app = createApp({
-            delimiters: ['[[', ']]'],
-            data() {
-                return {
-                    services: [],
-                };
-            },
-            methods: {
-                getServices() {
-                    axios.get('{{ route('service_previews') }}')
-                        .then(response => {
-                            this.services = response.data;
-                        }).catch(console.error);
-                },
-                fullImagePath(image) {
-                    return image ? `/storage/${image}` : '/images/default-service.png';
-                },
-            },
-            mounted() {
-                this.getServices();
+<script>
+    const { createApp } = Vue;
+
+    const app = createApp({
+        delimiters: ['[[', ']]'],
+        data() {
+            return {
+                bookings: [],
             }
-        });
-        app.mount('#app');
-    </script>
+        },
+        methods: {
+            getBookings() {
+                axios.get('https://a.khmercleaningservice.us/api/bookings') // Update URL if needed
+                    .then(response => {
+                        this.bookings = response.data;
+                    })
+                    .catch(error => {
+                        console.error("Fetch error:", error);
+                        Swal.fire("Error", "Unable to load bookings.", "error");
+                    });
+            }
+        },
+        mounted() {
+            this.getBookings();
+        }
+    });
+
+    app.mount("#app");
+</script>
 @endsection

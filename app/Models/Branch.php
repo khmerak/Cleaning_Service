@@ -18,4 +18,8 @@ class Branch extends Model
         'image',
         'description',
     ];
+    public function bookings()
+{
+    return $this->hasMany(Booking::class);
+}
 }

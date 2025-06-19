@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BranchController;
@@ -77,29 +78,29 @@ Route::get('/product_previews', [Product_previewController::class, 'get'])->name
 Route::get('/service_previews', [Service_previewController::class, 'get'])->name('service_previews');
 
 #count 
-Route::get('/countOrder',[DashboardController::class,'countOrders'])->name('count_order');
+Route::get('/countOrder', [DashboardController::class, 'countOrders'])->name('count_order');
 Route::get('/count-users', [DashboardController::class, 'countUsers'])->name('count_users');
 
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/order_items',[OrderController::class, 'get']);
+Route::get('/order_items', [OrderController::class, 'get']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('cart/add', [ProductAddToCartController::class, 'addToCart']);
-    Route::apiResource('/cart',ProductAddToCartController::class);
+    Route::apiResource('/cart', ProductAddToCartController::class);
 });
 Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
     return $request->user();
 });
 
-
+Route::get('/bookings', [BookingController::class, 'get']); 
+Route::post('/bookings', [BookingController::class, 'store']); 
+Route::put('/bookings/{id}', [BookingController::class, 'update']); 
+Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->put('/cart/{id}', [ProductAddToCartController::class, 'update']);
 // routes/api.php
 Route::middleware('auth:sanctum')->post('/checkout', [OrderController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/invoices', [InvoiceController::class, 'index']);
 Route::middleware('auth:sanctum')->get('/orders', [OrderController::class, 'index']);
-
-
-

@@ -16,6 +16,9 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('service_preview') }}" class="nav-link">Service Preview</a>
             </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('show_booking') }}" class="nav-link">Booking</a>
+            </li>
             <li class="nav-item dropdown" style="position: absolute; right: 30px; top: 9px;">
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">

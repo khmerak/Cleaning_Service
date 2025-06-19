@@ -178,7 +178,7 @@
             },
             methods: {
                 getUsers() {
-                    axios.get('https://a.khmercleaningservice.us/api/users')
+                    axios.get('')
                         .then(res => {
                             this.users = res.data;
                         });

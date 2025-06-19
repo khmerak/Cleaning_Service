@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BookingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,7 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/dashboard/service_preview', [Service_previewController::class, 'index'])->name('service_preview');
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('user');
     Route::get('/dashboard/order',[OrderController::class,'showOrder'])->name('showOrder');
+    Route::get('/dashboard/booking',[BookingController::class,'index'])->name('show_booking');
 });
 
 // ✅ Logout Route

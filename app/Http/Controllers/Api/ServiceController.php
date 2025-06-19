@@ -19,17 +19,19 @@ class ServiceController extends Controller
 
     public function get()
     {
-        $services = Service::with('service_category')->get();
+        $services = Service::with('serviceCategory')->get();
         return response()->json($services, 200);
     }
     public function get_service()
-    {
-        $services = Service::with('service_category')
-            ->take(4) // or ->limit(4)
-            ->get();
+{
+    $services = Service::with('serviceCategory')
+        ->inRandomOrder()
+        ->take(4)
+        ->get();
 
-        return response()->json($services, 200);
-    }
+    return response()->json($services, 200);
+}
+
 
     /**
      * Store a newly created resource in storage.
