@@ -1,3 +1,92 @@
+## Service have not completed yet
+🧹 Cleaning Service App – Database Structure
+This document summarizes the database structure for the Cleaning Service Web App.
+
+📂 Overview
+The database contains tables for managing:
+
+Users & Roles (admin/user)
+
+Customers & Bookings
+
+Services & Products
+
+Orders, Invoices, Carts
+
+Employees, Branches & Positions
+
+Authentication (sessions, tokens)
+
+File uploads
+
+🗃️ Key Tables and Relationships
+👤 Users
+Stores registered users with roles.
+
+Columns: name, email, password, role.
+
+👥 Customers
+Linked to a user_id.
+
+Unique by email and phone.
+
+🏢 Branches
+Each branch has a unique name, email, and phone.
+
+👨‍🔧 Employees
+Connected to branch_id and position_id.
+
+Stores employee personal data and profile image.
+
+💼 Positions
+Stores role titles for employees (e.g., Manager, Cleaner).
+
+Note: No records yet.
+
+📦 Products
+Products include price, stock, and category_id.
+
+Linked to categories.
+
+🛍️ Categories
+Categories for products (e.g., Bath Cleaning, Cleaning Machine).
+
+🛒 Orders & Order Items
+Orders linked to users.
+
+Each order can have multiple items.
+
+Items reference both order_id and product_id.
+
+🧾 Invoices
+Linked to order_id.
+
+Stores payment method.
+
+📅 Bookings
+Customers book services at a branch.
+
+Linked to service_id, customer_id, branch_id.
+
+🧰 Services
+Linked to service_categories.
+
+Note: No data yet. Table exists but empty.
+
+🧼 Service Categories
+Parent categories for services.
+
+Note: Table exists but empty.
+
+🛒 Add to Cart
+Users can add products to cart before placing orders.
+
+🖼️ Uploads
+Stores uploaded images.
+
+Note: Table exists but no records yet.
+
+
 # 🧼 Cleaning App - Database Schema Overview
 
 This document provides an overview of the database structure used in the **Cleaning App** system.
